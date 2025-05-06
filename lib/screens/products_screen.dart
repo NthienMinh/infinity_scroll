@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:infinity_scroll/features/products/bloc/favorites/favorites_cubit.dart';
 import 'package:infinity_scroll/features/products/bloc/products_bloc.dart';
 import 'package:infinity_scroll/features/products/bloc/products_event.dart';
 import 'package:infinity_scroll/features/products/bloc/products_state.dart';
@@ -13,8 +14,11 @@ class ProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(Texts.productsText.products)),
-      body: BlocProvider(
-        create: (context) => ProductsBloc()..add(LoadFirst()),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => ProductsBloc()..add(LoadFirst())),
+          BlocProvider(create: (context) => FavoritesCubit()),
+        ],
         child: BlocBuilder<ProductsBloc, ProductsState>(
           builder: (context, state) {
             return ProductsView();

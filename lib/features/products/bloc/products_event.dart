@@ -11,3 +11,4 @@ class LoadMore extends ProductsEvent {
 class SearchChanged extends ProductsEvent {
   SearchChanged();
 }
+

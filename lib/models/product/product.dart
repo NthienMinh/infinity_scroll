@@ -8,7 +8,6 @@ abstract class Product with _$Product {
   const factory Product({
     required int id,
     required String title,
-    required List images,
     required double price,
   }) = _Product;
 

@@ -6,6 +6,7 @@ import 'package:infinity_scroll/features/products/bloc/products_state.dart';
 import 'package:infinity_scroll/models/api/api_response.dart';
 import 'package:infinity_scroll/models/product/product.dart';
 import 'package:infinity_scroll/services/products_services/products_services.dart';
+import 'package:infinity_scroll/utils/pref_utils.dart';
 
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   static const int _limit = 20;
@@ -33,6 +34,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     LoadFirst event,
     Emitter<ProductsState> emit,
   ) async {
+    _products.clear();
     emit(LoadingFirst());
     _skip = 0;
     String valueSearch = searchController.text;
@@ -44,6 +46,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
               _limit,
               valueSearch,
             );
+
 
     if (result is Success) {
       var data = (result as Success).data as ProductResponse;
@@ -106,4 +109,5 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     searchController.dispose();
     return super.close();
   }
+
 }

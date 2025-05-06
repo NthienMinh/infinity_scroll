@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Product {
 
- int get id; String get title; List get images; double get price;
+ int get id; String get title; double get price;
 /// Create a copy of Product
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $ProductCopyWith<Product> get copyWith => _$ProductCopyWithImpl<Product>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Product&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.images, images)&&(identical(other.price, price) || other.price == price));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Product&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.price, price) || other.price == price));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(images),price);
+int get hashCode => Object.hash(runtimeType,id,title,price);
 
 @override
 String toString() {
-  return 'Product(id: $id, title: $title, images: $images, price: $price)';
+  return 'Product(id: $id, title: $title, price: $price)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $ProductCopyWith<$Res>  {
   factory $ProductCopyWith(Product value, $Res Function(Product) _then) = _$ProductCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, List images, double price
+ int id, String title, double price
 });
 
 
@@ -66,12 +66,11 @@ class _$ProductCopyWithImpl<$Res>
 
 /// Create a copy of Product
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? images = null,Object? price = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? price = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,images: null == images ? _self.images : images // ignore: cast_nullable_to_non_nullable
-as List,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,
   ));
 }
@@ -83,18 +82,11 @@ as double,
 @JsonSerializable()
 
 class _Product implements Product {
-  const _Product({required this.id, required this.title, required final  List images, required this.price}): _images = images;
+  const _Product({required this.id, required this.title, required this.price});
   factory _Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 
 @override final  int id;
 @override final  String title;
- final  List _images;
-@override List get images {
-  if (_images is EqualUnmodifiableListView) return _images;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_images);
-}
-
 @override final  double price;
 
 /// Create a copy of Product
@@ -110,16 +102,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Product&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._images, _images)&&(identical(other.price, price) || other.price == price));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Product&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.price, price) || other.price == price));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(_images),price);
+int get hashCode => Object.hash(runtimeType,id,title,price);
 
 @override
 String toString() {
-  return 'Product(id: $id, title: $title, images: $images, price: $price)';
+  return 'Product(id: $id, title: $title, price: $price)';
 }
 
 
@@ -130,7 +122,7 @@ abstract mixin class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$ProductCopyWith(_Product value, $Res Function(_Product) _then) = __$ProductCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, List images, double price
+ int id, String title, double price
 });
 
 
@@ -147,12 +139,11 @@ class __$ProductCopyWithImpl<$Res>
 
 /// Create a copy of Product
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? images = null,Object? price = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? price = null,}) {
   return _then(_Product(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,images: null == images ? _self._images : images // ignore: cast_nullable_to_non_nullable
-as List,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,
   ));
 }
