@@ -1,25 +1,22 @@
-import 'dart:convert';
-
-import 'package:infinity_scroll/models/product/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefUtils{
 
   String favorites = "favorite_products";
 
-  Future<void> saveFavorites(List<Product> products) async {
+  Future<void> saveFavorites(List<int> productsId) async {
     final prefs = await SharedPreferences.getInstance();
-    final jsonList = products.map((p) => p.toJson()).toList();
-    final encoded = jsonEncode(jsonList);
-    await prefs.setString(favorites, encoded);
+    List<String> listId = productsId.map((e)=>e.toString()).toList();
+    await prefs.setStringList(favorites, listId);
   }
 
-  Future<List<Product>> loadFavorites() async {
+  Future<List<int>> loadFavorites() async {
     final prefs = await SharedPreferences.getInstance();
-    final encoded = prefs.getString(favorites);
-    if (encoded == null) return [];
-    final List decoded = jsonDecode(encoded);
-    return decoded.map((e) => Product.fromJson(e)).toList();
+    List<String>? stringList = prefs.getStringList(favorites);
+    if (stringList != null) {
+      return stringList.map((e) => int.parse(e)).toList();
+    }
+    return [];
   }
 
 }
